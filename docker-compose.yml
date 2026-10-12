@@ -1,4 +1,10 @@
 services:
+  frontend:
+    build: ./frontend
+    expose:
+      - "80"
+    restart: unless-stopped
+
   app:
     build: .
     expose:
@@ -39,6 +45,7 @@ services:
       - ./nginx/certs:/etc/nginx/certs:ro
     depends_on:
       - app
+      - frontend
     restart: unless-stopped
 
 volumes:
