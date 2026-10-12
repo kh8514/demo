@@ -1,8 +1,12 @@
 services:
   app:
     build: .
+    image: demo-backend:dev
+
   frontend:
     build: ./frontend
+    image: demo-frontend:dev
+
   db:
     ports:
       - "5432:5432"
