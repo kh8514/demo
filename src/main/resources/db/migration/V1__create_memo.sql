@@ -1,0 +1,4 @@
+CREATE TABLE memo (
+  id      BIGSERIAL PRIMARY KEY,
+  content VARCHAR(255)
+);
