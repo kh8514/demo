@@ -1,12 +1,12 @@
 services:
   frontend:
-    build: ./frontend
+    image: ghcr.io/kh8514/demo/frontend:latest
     expose:
       - "80"
     restart: unless-stopped
 
   app:
-    build: .
+    image: ghcr.io/kh8514/demo/backend:latest
     expose:
       - "8080"
     environment:
@@ -26,8 +26,6 @@ services:
 
   db:
     image: postgres:16-alpine
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_DB: appdb
       POSTGRES_USER: app
