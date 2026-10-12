@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect, useState} from "react";
-import {fetchMemos, createMemo} from "./api.js";
+import {fetchMemos, createMemo, deleteMemo} from "./api.js";
 
 function App() {
   const [memos, setMemos] = useState([]);
@@ -32,6 +32,15 @@ function App() {
     }
   }
 
+  const handleDelete = async (id) => {
+    try{
+      await deleteMemo(id);
+      await load();
+    } catch (e) {
+      setError(e.message);
+    }
+  }
+
   return (
       <div className="container">
         <h1>메모</h1>
@@ -49,7 +58,10 @@ function App() {
 
         <ul>
           {memos.map((memo) => (
-              <li key={memo.id}>{memo.content}</li>
+              <li key={memo.id}>
+                {memo.content}
+                <button onClick={() => handleDelete(memo.id)}>삭제</button>
+              </li>
           ))}
         </ul>
       </div>

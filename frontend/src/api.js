@@ -15,3 +15,8 @@ export async function createMemo(content) {
     if (!res.ok) throw new Error(`저장 실패: ${res.status}`);
     return res.json();
 }
+
+export async function deleteMemo(id) {
+    const res = await fetch(`${BASE_URL}/${id}`, { method: 'DELETE' });
+    if (!res.ok) throw new Error(`삭제 실패: ${res.status}`);
+}
